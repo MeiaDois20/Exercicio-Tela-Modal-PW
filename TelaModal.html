@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal Simples</title>
+    <style>
+        /* Centraliza os botões na tela */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            background: #eee;
+        }
+
+        /* Botões simples */
+        button {
+            margin: 8px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Cores dos botões */
+        #abrirModal, #abrirModalMouseover {
+            background: #007bff;
+            color: white;
+        }
+        #fecharModal, #fecharModalMouseover {
+            background: #dc3545;
+            color: white;
+        }
+        #ok {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Fundo escuro do modal (backdrop) */
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Caixa do modal */
+        dialog {
+            border: none;
+            border-radius: 16px;
+            padding: 24px;
+            background: white;
+        }
+
+        .modal-conteudo {
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .modal-conteudo h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .modal-conteudo button {
+            margin: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div style="display: flex; gap: 15px;">
+    <button id="abrirModal">Abrir Modal (clique)</button>
+    <button id="abrirModalMouseover">Abrir Modal (mouseover)</button>
+</div>
+
+<dialog id="modal-click">
+    <div class="modal-conteudo">
+        <h1>Tela modal - Clique</h1>
+        <button id="fecharModal">Fechar</button>
+        <button id="ok">OK</button>
+    </div>
+</dialog>
+
+<dialog id="modal-mouseover">
+    <div class="modal-conteudo">
+        <h1>Tela modal - Mouseover</h1>
+        <button id="fecharModalMouseover">Fechar</button>
+    </div>
+</dialog>
+
+<script>
+    // MODAL 1 (clique)
+    const dlgClick = document.querySelector('#modal-click');
+    const btnAbrir = document.querySelector('#abrirModal');
+    const btnFechar = document.querySelector('#fecharModal');
+    const btnOk = document.querySelector('#ok');
+
+    btnAbrir.addEventListener('click', () => dlgClick.showModal());
+    btnFechar.addEventListener('click', () => dlgClick.close());
+    btnOk.addEventListener('click', () => {
+        alert("Você clicou em OK!");
+        dlgClick.close();
+    });
+    dlgClick.addEventListener('click', (e) => {
+        if (e.target === dlgClick) dlgClick.close();
+    });
+
+    // MODAL 2 (mouseover)
+    const dlgMouseover = document.querySelector('#modal-mouseover');
+    const btnMouseover = document.querySelector('#abrirModalMouseover');
+    const btnFecharMouseover = document.querySelector('#fecharModalMouseover');
+
+    btnMouseover.addEventListener('mouseover', () => dlgMouseover.showModal());
+    btnFecharMouseover.addEventListener('click', () => dlgMouseover.close());
+    dlgMouseover.addEventListener('click', (e) => {
+        if (e.target === dlgMouseover) dlgMouseover.close();
+    });
+</script>
+</body>
+</html>
