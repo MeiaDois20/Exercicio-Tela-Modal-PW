@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Modal Simples</title>
     <style>
-        /* Centraliza os botões na tela */
         body {
             margin: 0;
             min-height: 100vh;
@@ -16,7 +15,6 @@
             background: #eee;
         }
 
-        /* Botões simples */
         button {
             margin: 8px;
             padding: 10px 20px;
@@ -26,7 +24,6 @@
             cursor: pointer;
         }
 
-        /* Cores dos botões */
         #abrirModal, #abrirModalMouseover {
             background: #007bff;
             color: white;
@@ -45,7 +42,6 @@
             background: rgba(0, 0, 0, 0.6);
         }
 
-        /* Caixa do modal */
         dialog {
             border: none;
             border-radius: 16px;
@@ -53,6 +49,20 @@
             background: white;
         }
 
+        dialog[open] {
+            animation: aparecer 0.3s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
         .modal-conteudo {
             text-align: center;
             min-width: 300px;
